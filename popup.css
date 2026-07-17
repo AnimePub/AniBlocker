@@ -1,0 +1,198 @@
+* { box-sizing: border-box; }
+
+:root {
+  --ink: #10141c;
+  --panel: #161b26;
+  --line: #232a3a;
+  --amber: #ffb238;
+  --amber-dim: #7a5a24;
+  --text: #e7eaf0;
+  --text-dim: #7c8797;
+  --off: #4a4f5a;
+}
+
+body {
+  width: 268px;
+  margin: 0;
+  padding: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--ink);
+  color: var(--text);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mark {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.mark-svg { width: 40px; height: 40px; }
+
+.sweep-ring {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 1;
+  stroke-dasharray: 4 7;
+  opacity: 0.65;
+  transform-origin: 20px 20px;
+  animation: spin 6s linear infinite;
+}
+
+.shield {
+  fill: var(--panel);
+  stroke: var(--amber);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.check {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.title-block { display: flex; flex-direction: column; gap: 2px; }
+
+h1 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.tagline {
+  font-size: 10.5px;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+
+.status-card {
+  display: flex;
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 8px;
+  margin-bottom: 12px;
+}
+
+.stat { text-align: center; flex: 1; }
+
+.stat-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--line);
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 9.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 4px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 12px;
+  margin-bottom: 10px;
+}
+
+.toggle-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 21px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--off);
+  transition: 0.2s;
+  border-radius: 21px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider { background-color: var(--amber); }
+input:checked + .slider::before { transform: translateX(17px); }
+
+.reload-btn {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.reload-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.footnote {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin: 12px 2px 0;
+  line-height: 1.45;
+}
+
+/* Disabled state, toggled via JS adding .paused to body */
+body.paused .sweep-ring { animation-play-state: paused; opacity: 0.25; }
+body.paused .shield { stroke: var(--off); }
+body.paused .check { stroke: var(--off); }
+body.paused .tagline { color: var(--text-dim); }

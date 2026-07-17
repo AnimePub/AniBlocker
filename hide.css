@@ -1,0 +1,30 @@
+/* Common ad container patterns */
+[id^="google_ads_iframe"],
+[id^="div-gpt-ad"],
+[id*="dfp-ad"],
+[class*="ad-container"],
+[class*="ad-wrapper"],
+[class*="ad-banner"],
+[class*="advert-"],
+[class^="ad-slot"],
+[class*="sponsored-content"],
+[class*="taboola"],
+[class*="outbrain"],
+ins.adsbygoogle,
+iframe[src*="doubleclick.net"],
+iframe[src*="googlesyndication.com"],
+iframe[id^="google_ads_iframe"],
+.adsbygoogle,
+.ad-slot,
+.ad-unit,
+.advertisement,
+.google-ad,
+#ad_container,
+#adBanner,
+.dfp-slot,
+.ad-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+}
